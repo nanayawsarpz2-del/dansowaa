@@ -66,9 +66,14 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 
 /* ---------- opening interaction ---------- */
 const openSeal = document.getElementById('open-seal');
-const firstStoryScreen = document.querySelector('#screen-open').nextElementSibling;
-openSeal.addEventListener('click', () => {
-  firstStoryScreen.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+const openingScreen = document.getElementById('screen-open');
+function openStory(){
+  window.location.hash = 'screen-letter';
+}
+openSeal.addEventListener('click', openStory);
+openingScreen.addEventListener('click', (event) => {
+  if(event.target.closest('button')) return;
+  openStory();
 });
 
 /* ---------- fill in config text ---------- */
@@ -254,7 +259,7 @@ document.getElementById('cta-continue').addEventListener('click', () => {
 });
 
 function runQuestionSequence(){
-  const delays = reduceMotion ? [0,0,0,0] : [150, 1100, 2400, 3600];
+  const delays = reduceMotion ? [0,0,0,0] : [100, 450, 850, 1100];
   setTimeout(() => q1.classList.add('in'), delays[0]);
   setTimeout(() => q2.classList.add('in'), delays[1]);
   setTimeout(() => q3.classList.add('in'), delays[2]);
@@ -286,25 +291,30 @@ function dodgeNoButton(){
   const maxX = Math.max(0, container.width - w);
   const maxY = Math.max(0, container.height - h);
 
-  let x, y, tries = 0;
-  do {
+  const yesLeft = yesRect.left - container.left;
+  const yesTop = yesRect.top - container.top;
+  const minGapX = w * 0.9;
+  const minGapY = h * 1.0;
+
+  let x = 0, y = 0, found = false;
+  for(let tries = 0; tries < 20 && !found; tries++){
     x = Math.random() * maxX;
     y = Math.random() * maxY;
-    tries++;
-  } while (
-    tries < 12 &&
-    // keep clear of the YES button (relative coords within container)
-    Math.abs((x) - (yesRect.left - container.left)) < (w * 0.9) &&
-    Math.abs((y) - (yesRect.top - container.top)) < (h * 1.1)
-  );
+    const overlapsYes = Math.abs(x - yesLeft) < minGapX && Math.abs(y - yesTop) < minGapY;
+    if(!overlapsYes) found = true;
+  }
+  if(!found){
+    // guaranteed-safe fallback: the corner farthest from the YES button
+    x = yesLeft < maxX / 2 ? maxX : 0;
+    y = yesTop < maxY / 2 ? maxY : 0;
+  }
 
   btnNo.style.left = x + 'px';
   btnNo.style.top = y + 'px';
   btnNo.style.right = 'auto';
 }
 
-function handleNoAttempt(e){
-  e.preventDefault();
+function handleNoAttempt(){
   noAttempts++;
   const msgs = CONFIG.noMessages;
   const msg = msgs[Math.min(noAttempts - 1, msgs.length - 1)];
@@ -312,7 +322,7 @@ function handleNoAttempt(e){
   if(!reduceMotion){
     dodgeNoButton();
     btnNo.classList.remove('dodge');
-    void btnNo.offsetWidth;
+    void btnNo.offsetWidth; // restart the shake animation each time
     btnNo.classList.add('dodge');
   }
 }

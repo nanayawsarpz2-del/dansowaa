@@ -58,7 +58,7 @@
   </section>
 
   <!-- LETTER -->
-  <section class="screen">
+  <section class="screen" id="screen-letter">
     <span class="kicker reveal">a little preface</span>
     <div class="letter-body reveal">
       <p id="intro-line-1">I've been wanting to tell you something for a while.</p>
@@ -79,7 +79,7 @@
     <span class="kicker reveal">and this one's for the mood</span>
     <h2 class="title reveal">Your song. Obviously.</h2>
     <div class="player" id="player">
-      <button class="play-btn" id="play-btn" aria-label="play our song">
+      <button class="play-btn" id="play-btn" type="button" aria-label="play our song">
         <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       </button>
       <div class="track-info">
@@ -94,7 +94,7 @@
     <!-- audio src is set from script.js CONFIG.song.src -->
     <audio id="audio" preload="none"></audio>
 
-    <button class="cta reveal" id="cta-continue">
+    <button class="cta reveal" id="cta-continue" type="button">
       <span class="pill">There's one more thing...</span>
       <small>tap here</small>
     </button>
@@ -111,8 +111,8 @@
     <p class="q-line big" id="q3"><span class="heartbeat">Will you be my girlfriend?</span></p>
 
     <div class="choice-row" id="choice-row">
-      <button id="btn-yes" class="btn-choice">YES ❤️</button>
-      <button id="btn-no" class="btn-choice">NO 🙈</button>
+      <button id="btn-yes" class="btn-choice" type="button">YES ❤️</button>
+      <button id="btn-no" class="btn-choice" type="button">NO 🙈</button>
     </div>
   </div>
 
@@ -125,7 +125,7 @@
       <p class="sign-sub">Enter your name below ❤️</p>
       <input id="name-input" type="text" placeholder="Your name" maxlength="30" autocomplete="off" />
       <p class="helper">Signing this means you said yes to being my girlfriend.</p>
-      <button id="sign-btn" disabled>Sign it ❤️</button>
+      <button id="sign-btn" type="button" disabled>Sign it ❤️</button>
     </div>
 
     <div id="keepsake">

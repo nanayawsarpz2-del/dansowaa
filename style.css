@@ -23,6 +23,7 @@
   }
 
   *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+  html{ scroll-behavior:smooth; }
   body{
     margin:0;
     font-family: var(--body);
@@ -86,6 +87,7 @@
 
   /* ---- opening ---- */
   #screen-open{ cursor:pointer; }
+  #screen-open:focus-within{ outline:3px solid var(--gold); outline-offset:-10px; }
   .seal{
     width:88px; height:88px; border-radius:50%;
     background: radial-gradient(circle at 32% 28%, var(--rose) 0%, var(--wine) 55%, var(--wine-deep) 100%);
@@ -196,6 +198,7 @@
   .track-title{ font-family: var(--serif); font-size:16px; color: var(--wine-deep); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .track-artist{ font-size:13px; color: var(--ink-soft); margin-top:2px; }
   .progress{ height:4px; background: var(--paper-edge); border-radius:4px; margin-top:10px; overflow:hidden; cursor:pointer; }
+  .progress:focus-visible{ outline:3px solid var(--gold); outline-offset:5px; }
   .progress-fill{ height:100%; width:0%; background: linear-gradient(90deg, var(--wine), var(--rose)); border-radius:4px; }
   .play-btn{
     width:44px; height:44px; border-radius:50%; border:none; background: var(--wine); color: var(--ivory);
@@ -214,7 +217,7 @@
   /* ---- CTA button (wax seal style) ---- */
   .cta{
     margin-top: 46px; border:none; cursor:pointer; background: none; display:flex; flex-direction:column; align-items:center; gap:10px;
-    opacity:0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease;
+    opacity:1; transform:none; transition: opacity .8s ease, transform .8s ease;
   }
   .cta.in{ opacity:1; transform:none; }
   .cta .pill{
@@ -249,13 +252,19 @@
   }
   .toast.show{ opacity:1; transform: translateX(-50%) translateY(4px); }
 
-  .choice-row{ position:relative; width:100%; max-width:340px; height:150px; margin-top:10px; }
+  .choice-row{
+    position:relative; width:100%; max-width:340px; height:210px; margin-top:10px;
+    opacity:0; transform: translateY(14px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .choice-row.in{ opacity:1; transform:none; }
   .btn-choice{
     position:absolute; border:none; cursor:pointer; border-radius: 999px; font-family: var(--serif); font-size:17px;
-    padding: 15px 30px; min-width:120px; min-height:50px; box-shadow: var(--shadow-sm); transition: transform .18s cubic-bezier(.3,1.6,.5,1), left .35s cubic-bezier(.3,1,.4,1), top .35s cubic-bezier(.3,1,.4,1);
+    padding: 15px 30px; min-width:120px; min-height:50px; box-shadow: var(--shadow-sm); touch-action: manipulation; transition: transform .18s cubic-bezier(.3,1.6,.5,1), left .35s cubic-bezier(.3,1,.4,1), top .35s cubic-bezier(.3,1,.4,1);
   }
-  #btn-yes{ left:14px; top:50px; background: var(--wine); color: var(--ivory); }
-  #btn-no{ right:14px; top:50px; left:auto; background: var(--card); color: var(--wine); border:1.5px solid var(--rose-soft); }
+  .btn-choice:focus-visible, #sign-btn:focus-visible, .play-btn:focus-visible, .cta:focus-visible{ outline:3px solid var(--gold); outline-offset:5px; }
+  #btn-yes{ left:14px; top:80px; background: var(--wine); color: var(--ivory); }
+  #btn-no{ right:14px; top:80px; left:auto; background: var(--card); color: var(--wine); border:1.5px solid var(--rose-soft); }
   #btn-yes:active{ transform: scale(1.06); }
   #btn-no.dodge{ animation: shake .4s ease; }
   @keyframes shake{ 0%,100%{ transform: rotate(0);} 25%{ transform: rotate(-6deg);} 75%{ transform: rotate(6deg);} }
