@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>a little something for you</title>
+
+<!-- ============================================================
+  HOW TO CUSTOMIZE THIS PAGE (read me first!)
+
+  1. Open script.js and scroll to the "CONFIG" object at the top —
+     change her name, your messages, and song/video info there.
+
+  2. PHOTOS: add an /images folder next to this file, with
+     her-1.jpg, her-2.jpg, her-3.jpg, her-4.jpg inside (2-4 is fine).
+
+  3. MUSIC: add a /music folder next to this file, with
+     her-song.mp3 inside. Update CONFIG.song.src in script.js if you
+     use a different filename.
+
+  4. VIDEO (optional): add a /video folder next to this file, with
+     her-video.mp4 inside, then set CONFIG.video.enabled = true in
+     script.js. Leave it false if you don't want a video section.
+
+  Folder structure should look like:
+    index.html
+    style.css
+    script.js
+    /images/her-1.jpg, her-2.jpg, her-3.jpg, her-4.jpg
+    /music/her-song.mp3
+    /video/her-video.mp4   (optional)
+=============================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Literata:ital,wght@0,300;0,400;0,500;1,400&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+<div id="ambient" aria-hidden="true"></div>
+
+<!-- ============================= ACT ONE ============================= -->
+<main id="act-one">
+
+  <!-- OPENING -->
+  <section class="screen" id="screen-open">
+    <button class="seal" id="open-seal" type="button" aria-label="Open the message">
+      <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.1 2.2 4.8 5.6 4.2c2-.35 3.9.5 5 2.1.9-1.6 2.9-2.45 4.9-2.1 3.4.6 5.1 3.9 3.6 7.5C19.5 16.4 12 21 12 21z"/></svg>
+    </button>
+    <p class="eyebrow reveal">hey, you...</p>
+    <h1 class="lede reveal">I made <em>something</em> for you.</h1>
+    <p class="tap-hint reveal">tap the seal to open it</p>
+    <div class="thread-wrap" aria-hidden="true"><svg><path class="thread-path" d="M50,0 L50,2000" vector-effect="non-scaling-stroke"/></svg></div>
+  </section>
+
+  <!-- LETTER -->
+  <section class="screen" id="screen-letter">
+    <span class="kicker reveal">a little preface</span>
+    <div class="letter-body reveal">
+      <p id="intro-line-1">I've been wanting to tell you something for a while.</p>
+      <p id="intro-line-2">So instead of trying to say everything perfectly&nbsp;&mdash;</p>
+      <p id="intro-line-3"><em>I made you this.</em></p>
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section class="screen" id="screen-photos">
+    <span class="kicker reveal">a few of my favorites</span>
+    <h2 class="title reveal">Some moments I keep coming back to.</h2>
+    <div class="scrapbook" id="scrapbook"></div>
+  </section>
+
+  <!-- SONG -->
+  <section class="screen">
+    <span class="kicker reveal">and this one's for the mood</span>
+    <h2 class="title reveal">Your song. Obviously.</h2>
+    <div class="player" id="player">
+      <button class="play-btn" id="play-btn" type="button" aria-label="play our song">
+        <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="track-info">
+        <div class="track-title" id="track-title">Her Favorite Song</div>
+        <div class="track-artist" id="track-artist">Artist Name</div>
+        <div class="progress" id="progress" role="slider" tabindex="0" aria-label="Song progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progress-fill"></div></div>
+        <div class="viz"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="art"><svg viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3z"/></svg></div>
+      <span class="song-hint" id="song-hint">tap play &mdash; our song</span>
+    </div>
+    <!-- audio src is set from script.js CONFIG.song.src -->
+    <audio id="audio" preload="none"></audio>
+
+    <button class="cta reveal" id="cta-continue" type="button">
+      <span class="pill">There's one more thing...</span>
+      <small>tap here</small>
+    </button>
+  </section>
+</main>
+
+<!-- ============================= ACT TWO ============================= -->
+<div id="act-two">
+  <div class="toast" id="toast"></div>
+
+  <div class="stage" id="stage-question">
+    <p class="q-line" id="q1"></p>
+    <p class="q-line" id="q2">I've been meaning to ask you something.</p>
+    <p class="q-line big" id="q3"><span class="heartbeat">Will you be my girlfriend?</span></p>
+
+    <div class="choice-row" id="choice-row">
+      <button id="btn-yes" class="btn-choice" type="button">YES ❤️</button>
+      <button id="btn-no" class="btn-choice" type="button">NO 🙈</button>
+    </div>
+  </div>
+
+  <div class="stage" id="celebration">
+    <p class="yes-headline" id="yes-headline">SHE SAID YES ❤️</p>
+    <div class="final-msg" id="final-msg"></div>
+
+    <div id="sign-block">
+      <p class="sign-prompt">Now make it official...</p>
+      <p class="sign-sub">Enter your name below ❤️</p>
+      <input id="name-input" type="text" placeholder="Your name" maxlength="30" autocomplete="off" />
+      <p class="helper">Signing this means you said yes to being my girlfriend.</p>
+      <button id="sign-btn" type="button" disabled>Sign it ❤️</button>
+    </div>
+
+    <div id="keepsake">
+      <div class="card" id="keepsake-card">
+        <p class="cs-title">She Said Yes ❤️</p>
+        <p class="signature-name" id="ks-name"></p>
+        <p class="cs-sub">Officially my girlfriend.</p>
+        <p class="cs-date" id="ks-date"></p>
+        <p class="cs-tag">One little website.<br>One very big yes.</p>
+      </div>
+      <p class="screenshot-hint">📸 &nbsp;screenshot this moment</p>
+    </div>
+  </div>
+</div>
+
+<canvas id="confetti-canvas"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>
