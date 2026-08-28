@@ -2,7 +2,7 @@
    CONFIG — this is the only section you should need to edit.
    ===================================================================== */
 const CONFIG = {
-  herName: "Her Name",
+  herName: "Dansowaa",
 
   introMessage: [
     "I've been wanting to tell you something for a while.",
@@ -12,15 +12,15 @@ const CONFIG = {
 
   // Put your photos inside a /images folder next to index.html.
   photos: [
-    { src: "images/Photo%201.jpg", caption: "the one from that day", size: "hero", rotate: -1 },
+    { src: "images/Photo%201.jpg", caption: "my favorite one", size: "hero", rotate: -1 },
     { src: "images/Photo%202.jpg", caption: "you, being you", rotate: 3 },
-    { src: "images/Photo%203.jpg", caption: "my favorite one", rotate: -4 },
+    { src: "images/Photo%203.jpg", caption: "My Dansowaaa", rotate: -4 },
     { src: "images/Photo%204.jpg", caption: "this made me laugh so hard", rotate: 2 }
   ],
 
   song: {
-    title: "Love Nwantiti",
-    artist: "CKay",
+    title: "Guess ",
+    artist: "By Meeee",
     src: "music/Love.Nwantiti-CKay-MaTb3aa.Com.m4a"
   },
 
