@@ -1,0 +1,3 @@
+Optional: add her-video.mp4 to this folder if you want a video moment.
+Then open script.js and set CONFIG.video.enabled = true near the top.
+Delete this text file (and the video folder, if unused) once you're done.

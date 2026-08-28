@@ -1,0 +1,3 @@
+Add her-song.mp3 to this folder.
+If you use a different filename, update CONFIG.song.src in script.js.
+Delete this text file once you've added the real song.

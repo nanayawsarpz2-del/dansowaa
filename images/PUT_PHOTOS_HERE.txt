@@ -1,0 +1,4 @@
+Add her-1.jpg, her-2.jpg, her-3.jpg, her-4.jpg to this folder.
+2-4 photos is fine -- any missing ones just show a placeholder instead of breaking.
+You can rename your files, just update the "photos" list in script.js to match.
+Delete this text file once you've added your real photos.
